@@ -13,6 +13,8 @@ import SuccessMessage from "./messages/SuccessMessage";
 import Rooms from "./components/Rooms";
 import Logout from "./components/Logout";
 import Contact from "./components/Contact";
+import TermsAndConditions from "./components/TermsAndConditions";
+import About from "./components/About";
 
 const initialAuthState = {
   id: "",
@@ -44,7 +46,9 @@ function App() {
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/register" element={<Register />} />
             <Route path="/auth/logout" element={<Logout />} />
+            <Route path="/about" element={<About />} />
             <Route path="/auth/register/successfully" element={<SuccessMessage />} />
+            <Route path="/termsAndConditions" element={<TermsAndConditions />} />
             {user.token ? <Route path="/rooms" element={<Rooms />} /> : ""}
             {user.token ? <Route path="/messages" element={<Contact />} /> : ""}
 

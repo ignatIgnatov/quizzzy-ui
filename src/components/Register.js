@@ -152,7 +152,7 @@ const Register = () => {
                                                 <label className="checkbox">
                                                     <input onChange={handleCheckboxChange} type="checkbox" name="checkBox" id="checkBox" />
                                                     I've read the{" "}
-                                                    <a href="page_terms.html">Terms and Conditions</a>
+                                                    <Link to="/termsAndConditions">Terms and Conditions</Link>
                                                     {!isChecked ? <div><small className="text-danger">{uncheckedMessage}</small></div> : ''}
                                                 </label>
                                             </div>

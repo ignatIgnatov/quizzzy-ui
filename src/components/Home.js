@@ -12,7 +12,6 @@ const Home = () => {
         <div className="container head-container">
           <div className="row">
             <img className="lead blinking-text" src="/assets/images/challenge-logo.png"></img>
-            {/* <p className="lead blinking-text">Do you think you know? Challenge yourself!</p> */}
           </div>
         </div>
       </header>
