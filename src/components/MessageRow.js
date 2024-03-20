@@ -27,13 +27,13 @@ const MessageCard = ({ messageRow }) => {
     return (
         <>
             <tr>
-                <th scope="row">{messageRow.id}</th>
-                <td>{messageRow.author.email}</td>
-                <td>{messageRow.question}</td>
-                <td>{messageRow.trueAnswer}</td>
-                <td>{messageRow.wrongAnswerOne}</td>
-                <td>{messageRow.wrongAnswerTwo}</td>
-                <td>{messageRow.wrongAnswerThree}</td>
+                <th scope="row">{id}</th>
+                <td>{author}</td>
+                <td>{question}</td>
+                <td>{trueAnswer}</td>
+                <td>{wrongAnswerOne}</td>
+                <td>{wrongAnswerTwo}</td>
+                <td>{wrongAnswerThree}</td>
                 <td><input
                     // onClick={approveHandler}
                     className="btn btn-default"

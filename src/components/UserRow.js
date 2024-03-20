@@ -8,6 +8,9 @@ const UserCard = ({ userRow }) => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
+    const id = userRow.id;
+    const firstName = userRow.firstName;
+    const lastName = userRow.lastName;
     const email = userRow.email;
     const token = user.token;
 
@@ -29,10 +32,10 @@ const UserCard = ({ userRow }) => {
     return (
         <>
             <tr>
-                <th scope="row">{userRow.id}</th>
-                <td>{userRow.firstName}</td>
-                <td>{userRow.lastName}</td>
-                <td>{userRow.email}</td>
+                <th scope="row">{id}</th>
+                <td>{firstName}</td>
+                <td>{lastName}</td>
+                <td>{email}</td>
                 <td><input
                     // onClick={infoHandler}
                     className="btn btn-update"
