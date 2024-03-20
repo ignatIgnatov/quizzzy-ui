@@ -1,6 +1,13 @@
+import * as messageService from "../services/messageService";
+
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
 const MessageCard = ({ messageRow }) => {
 
+    const { user } = useContext(AuthContext);
+
+    const id = messageRow.id;
     const author = messageRow.author.email;
     const question = messageRow.question;
     const trueAnswer = messageRow.trueAnswer;
@@ -9,13 +16,13 @@ const MessageCard = ({ messageRow }) => {
     const wrongAnswerThree = messageRow.wrongAnswerThree;
 
 
-    // const deleteHandler = () => {
-    //     userService.deleteUser(email, token)
-    //         .then(() => {
-    //             alert(`User with email ${email} deleted successfully!`)
-    //             window.location.reload();
-    //         });
-    // }
+    const deleteHandler = () => {
+        messageService.deleteQuestion(id, user.token)
+            .then(() => {
+                alert(`Question with id ${id} deleted successfully!`)
+                window.location.reload();
+            });
+    }
 
     return (
         <>
@@ -35,7 +42,14 @@ const MessageCard = ({ messageRow }) => {
                     value="Approve"
                 /></td>
                 <td><input
-                    // onClick={deleteHandler}
+                    // onClick={editHandler}
+                    className="btn btn-default"
+                    type="button"
+                    name="edit"
+                    value="Edit"
+                /></td>
+                <td><input
+                    onClick={deleteHandler}
                     className="btn btn-action"
                     type="button"
                     name="delete"

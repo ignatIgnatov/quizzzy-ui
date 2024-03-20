@@ -16,7 +16,6 @@ const RecievedQuestionsTable = () => {
 
     useEffect(() => {
         messageService.getAllUserQuestions(token).then((data) => {
-            console.log(data);
             setMessage(Object.values(data));
         });
     }, []);
@@ -45,6 +44,7 @@ const RecievedQuestionsTable = () => {
                                     <th scope="col">Wrong answer one</th>
                                     <th scope="col">Wrong answer two</th>
                                     <th scope="col">Wrong answer three</th>
+                                    <th scope="col"></th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
                                 </tr>

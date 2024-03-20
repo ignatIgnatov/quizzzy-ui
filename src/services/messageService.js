@@ -24,3 +24,12 @@ export const getAllUserQuestions = async (token) => {
     });
     return await res.json();
 };
+
+export const deleteQuestion = (id, token) => {
+    return fetch(`${baseUrl}/${id}`, {
+        method: "DELETE",
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
+};
