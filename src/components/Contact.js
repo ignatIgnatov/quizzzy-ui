@@ -158,7 +158,7 @@ const Contact = () => {
                                     </label>
                                     {wrongOne ? <div><small className="text-danger">{wrongOne}</small></div> : ''}
                                     <textarea
-                                        placeholder="Type your true answer here..."
+                                        placeholder="Type your first wrong answer here..."
                                         className="form-control"
                                         name="wrongAnswerOne"
                                         rows="1"
@@ -173,7 +173,7 @@ const Contact = () => {
                                     </label>
                                     {wrongTwo ? <div><small className="text-danger">{wrongTwo}</small></div> : ''}
                                     <textarea
-                                        placeholder="Type your true answer here..."
+                                        placeholder="Type your second wrong answer here..."
                                         className="form-control"
                                         name="wrongAnswerTwo"
                                         rows="1"
@@ -188,7 +188,7 @@ const Contact = () => {
                                     </label>
                                     {wrongThree ? <div><small className="text-danger">{wrongThree}</small></div> : ''}
                                     <textarea
-                                        placeholder="Type your true answer here..."
+                                        placeholder="Type your third wrong answer here..."
                                         className="form-control"
                                         name="wrongAnswerThree"
                                         rows="1"

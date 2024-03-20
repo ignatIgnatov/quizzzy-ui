@@ -6,7 +6,12 @@ import * as authService from "../services/authService";
 
 import { useNavigate } from "react-router-dom";
 
+import { AuthContext } from "../contexts/AuthContext";
+import { useContext } from "react";
+
 const Register = () => {
+
+    const { user } = useContext(AuthContext);
 
     let navigate = useNavigate();
     let [uncheckedMessage, setUncheckedMessage] = useState('');
@@ -36,7 +41,9 @@ const Register = () => {
                             setError('');
                         } else if (data.error) { setError(data.error) }
                     } else {
-                        navigate("/auth/register/successfully")
+                        user.token
+                            ? navigate("/admin/registered-users-table")
+                            : navigate("/auth/register/successfully")
                     }
                 })
                 .catch(error => {

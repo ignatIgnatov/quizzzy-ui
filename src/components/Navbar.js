@@ -26,12 +26,12 @@ const Navbar = () => {
                     Admin Panel <b className="caret"></b>
                 </Link>
                 <ul className="dropdown-menu">
-                    {/* <li>
-                        <Link to="/admin/usersList">All Users</Link>
+                    <li>
+                        <Link to="/admin/registered-users-table">Registred Users</Link>
                     </li>
                     <li>
-                        <Link to="/message/all">All Received Messages</Link>
-                    </li> */}
+                        <Link to="/admin/user-questions-table">Received User Questions</Link>
+                    </li>
                     <li>
                         <Link to="/auth/register">Register User</Link>
                     </li>
@@ -116,11 +116,11 @@ const Navbar = () => {
                             <>
                                 <ul className="nav navbar-nav pull-right" style={{ marginLeft: 70 }}>
                                     <li>
-                                        <Link to="/auth/login">SIGN IN</Link>
+                                        <Link to="/auth/login">Sign in</Link>
 
                                     </li>
                                     <li>
-                                        <Link to="auth/register">SIGN UP</Link>
+                                        <Link to="auth/register">Sign up</Link>
                                     </li>
                                 </ul>
                             </>

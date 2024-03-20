@@ -99,10 +99,12 @@ const Rooms = () => {
                                         <div className="h-caption">
                                             <h3>
                                                 {/* <i className="fa fa-cogs fa-5"></i> */}
-                                                Room 1
+                                                USER QUESTIONS
                                             </h3>
                                             <hr></hr>
-                                            <p>Description of room 1</p>
+
+                                            <p>In this room you will answer questions asked by users</p>
+
                                         </div>
                                     </button>
                                 </div>

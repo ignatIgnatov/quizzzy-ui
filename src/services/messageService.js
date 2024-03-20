@@ -11,3 +11,16 @@ export const createQuestion = async (name, email, question, trueAnswer, wrongAns
     });
     return await res.json();
 }
+
+
+export const getAllUserQuestions = async (token) => {
+    const res = await fetch(baseUrl, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+        },
+    });
+    return await res.json();
+};

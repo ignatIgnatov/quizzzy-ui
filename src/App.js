@@ -15,6 +15,8 @@ import Logout from "./components/Logout";
 import Contact from "./components/Contact";
 import TermsAndConditions from "./components/TermsAndConditions";
 import About from "./components/About";
+import RecievedQuestionsTable from "./components/RecievedQuestionsTable";
+import RegistеredUsersTable from "./components/RegistеredUsersTable";
 
 const initialAuthState = {
   id: "",
@@ -43,6 +45,8 @@ function App() {
           <Routes>
 
             <Route path="/" element={<Home />} />
+            <Route path="/admin/user-questions-table" element={<RecievedQuestionsTable />} />
+            <Route path="/admin/registered-users-table" element={<RegistеredUsersTable />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/register" element={<Register />} />
             <Route path="/auth/logout" element={<Logout />} />
