@@ -108,9 +108,7 @@ const GamePlayUserQuestions = () => {
         navigate("/rooms");
     }
 
-
     return (
-
         <div>
             <header id="head" className="secondary"></header>
             <div className="container">
@@ -141,7 +139,6 @@ const GamePlayUserQuestions = () => {
                 </div>
             </div>
         </div>
-
     )
 }
 

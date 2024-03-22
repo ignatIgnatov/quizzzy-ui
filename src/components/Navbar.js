@@ -42,22 +42,6 @@ const Navbar = () => {
                     <Link to="/auth/logout">Logout</Link>
                 </li>
             </ul>
-
-
-            {/* {isShown ? (
-                <li
-                    onClick={() => {
-                        setIsShown(false);
-                        messageCounter = 0;
-                    }}
-                >
-                    <Link to="/message/all">
-                        <i className="fa-solid fa-message text-danger message-icon"></i>
-                    </Link>
-                </li>
-            ) : (
-                ""
-            )} */}
         </>
     );
 
@@ -96,15 +80,6 @@ const Navbar = () => {
                         <li>
                             {user.token ? <Link to="/messages">Send Your Question</Link> : ""}
                         </li>
-                        {/* <ul className="nav navbar-nav pull-right" style={{ marginLeft: 70 }}>
-                            <li>
-                                <Link to="/auth/login">Login</Link>
-                            </li>
-                            <li>
-                                <Link to="/auth/register">Register</Link>
-                            </li>
-                        </ul> */}
-
 
                         {user.token ? (
                             isAdmin ? (
