@@ -273,6 +273,24 @@ label {
   color: #888;
 }
 
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.blinking-text {
+  animation: blink 0.5s infinite;
+}
+
 .answer {
   margin-top: 10px;
 }

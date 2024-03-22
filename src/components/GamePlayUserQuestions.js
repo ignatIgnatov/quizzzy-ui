@@ -18,11 +18,21 @@ const GamePlayUserQuestions = () => {
     const [questions, setQuestions] = useState([]);
     const [randomQuestion, setRandomQuestion] = useState([]);
     const [buttonClicked, setButtonClicked] = useState(false);
-    const [seconds, setSeconds] = useState(30);
+    const [seconds, setSeconds] = useState(3);
+    const [green, setGreen] = useState('');
     const [shuffledAnswers, setShuffledAnswers] = useState([]);
     const [timer, setTimer] = useState(null);
+    const [timesUp, setTimesUp] = useState(false);
 
     let question = randomQuestion.question;
+
+    const removeButtonClassNames = () => {
+        const buttons = document.querySelectorAll('.value');
+        buttons.forEach(button => {
+            button.classList.remove("true-answer");
+            button.classList.remove("wrong-answer");
+        });
+    };
 
     useEffect(() => {
         roomService.getAllQuestionsByCategory(user.token, category)
@@ -33,41 +43,52 @@ const GamePlayUserQuestions = () => {
 
     useEffect(() => {
         if (questions.length > 0) {
-            const index = Math.floor(Math.random() * questions.length);
-            setRandomQuestion(questions[index]);
-
-            const wrongAnswerOne = randomQuestion ? randomQuestion.wrongAnswerOne : "";
-            const wrongAnswerTwo = randomQuestion ? randomQuestion.wrongAnswerTwo : "";
-            const wrongAnswerThree = randomQuestion ? randomQuestion.wrongAnswerThree : "";
-            const answers = [trueAnswer, wrongAnswerOne, wrongAnswerTwo, wrongAnswerThree];
-
-            setShuffledAnswers(answers.sort(() => Math.random() - 0.5));
-            setButtonClicked(false);
-            setSeconds(30);
-
-            const newTimer = setInterval(() => {
-                if (seconds > 0) {
-                    setSeconds(prev => prev - 1);
-                } else {
-                    clearInterval(newTimer)
-                    setButtonClicked(true);
-                    alert("Time's up! Please select an answer.");
-                }
-            }, 1000);
-
-            setTimer(newTimer);
-
-            clearInterval(timer);
+            chooseNextQuestion();
         }
     }, [questions]);
 
-    const trueAnswer = randomQuestion ? randomQuestion.trueAnswer : "";
+    const chooseNextQuestion = () => {
+
+        removeButtonClassNames();
+
+        const index = Math.floor(Math.random() * questions.length);
+        setRandomQuestion(questions[index]);
+
+        const trueAnswer = randomQuestion ? randomQuestion.trueAnswer : "";
+        setGreen(trueAnswer);
+        const wrongAnswerOne = randomQuestion ? randomQuestion.wrongAnswerOne : "";
+        const wrongAnswerTwo = randomQuestion ? randomQuestion.wrongAnswerTwo : "";
+        const wrongAnswerThree = randomQuestion ? randomQuestion.wrongAnswerThree : "";
+        const answers = [trueAnswer, wrongAnswerOne, wrongAnswerTwo, wrongAnswerThree];
+
+        setTimesUp(false);
+        setShuffledAnswers(answers.sort(() => Math.random() - 0.5));
+        setButtonClicked(false);
+        setSeconds(3);
+
+        const newTimer = setInterval(() => {
+
+            setSeconds(prev => {
+                if (prev > 0) {
+                    return prev - 1;
+                } else {
+                    clearInterval(newTimer)
+                    setButtonClicked(true);
+                    setTimesUp(true);
+                    return prev;
+                }
+            })
+        }, 1000);
+
+        setTimer(newTimer);
+        clearInterval(timer);
+    }
 
     const checkForTrueAnswer = (event) => {
 
         const buttonValue = event.target.value;
 
-        if (buttonValue === trueAnswer) {
+        if (buttonValue === green) {
             event.target.classList.add("true-answer");
         } else {
             event.target.classList.add("wrong-answer");
@@ -79,11 +100,12 @@ const GamePlayUserQuestions = () => {
     }
 
     const toNextQuestion = () => {
-        navigate("/game/room/u-q-start");
+        chooseNextQuestion();
     }
 
     const toOtherRoom = () => {
-        navigate("/rooms")
+        localStorage.removeItem("category");
+        navigate("/rooms");
     }
 
 
@@ -101,6 +123,7 @@ const GamePlayUserQuestions = () => {
                 <button onClick={toNextQuestion} className="btn-action">New Question</button>{" "}
                 <button onClick={toOtherRoom} className="btn-default">To other room</button>
             </div>
+            {timesUp ? <h3 className="start-button blinking-text">...your 30 seconds are up. Go to next question...</h3> : <h3></h3>}
             <div className="jumbotron top-space">
                 <div className="container">
                     <h2 className="text-center thin">{question}</h2>
