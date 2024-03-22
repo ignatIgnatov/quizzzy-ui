@@ -14,10 +14,6 @@ const MessageCard = ({ messageRow }) => {
     const id = messageRow.id;
     const author = messageRow.author.email;
     const question = messageRow.question;
-    const trueAnswer = messageRow.trueAnswer;
-    const wrongAnswerOne = messageRow.wrongAnswerOne;
-    const wrongAnswerTwo = messageRow.wrongAnswerTwo;
-    const wrongAnswerThree = messageRow.wrongAnswerThree;
     const approved = messageRow.approved;
 
 
@@ -40,11 +36,6 @@ const MessageCard = ({ messageRow }) => {
                 <th scope="row">{id}</th>
                 <td>{author}</td>
                 <td>{question}</td>
-                <td>{trueAnswer}</td>
-                <td>{wrongAnswerOne}</td>
-                <td>{wrongAnswerTwo}</td>
-                <td>{wrongAnswerThree}</td>
-
                 <td><input
                     onClick={editHandler}
                     className="btn btn-default"

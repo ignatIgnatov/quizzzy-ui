@@ -225,16 +225,106 @@
   background: #868584;
 }
 
+.start-button {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-button .start-btn {
+  width: 30%;
+  margin-top: 50px;
+  background-color: rgb(3, 192, 3);
+  border-radius: 4px;
+}
+
+.start-button .start-btn:hover {
+  background-color: rgb(4, 234, 4);
+}
+
 /*******************************/
 /*           Jumbotron         */
 /*******************************/
 .jumbotron {
-  height: 45vh;
+  height: auto;
   color: inherit;
   background-color: #dfefff;
   padding-top: 15px;
   padding-bottom: 15px;
   margin-bottom: 0;
+}
+
+.jumbotron .game-play {
+  background-color: #0a91c2;
+  padding: 15px;
+  border-radius: 4px;
+  width: 95%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.jumbotron .game-play .up,
+.jumbotron .game-play .down {
+  width: 100%;
+  margin: 10px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.jumbotron .game-play button {
+  width: 40%;
+  height: 60px;
+  border-radius: 4px;
+  border: none;
+  background-color: #84ddfd;
+}
+
+@keyframes blink-true {
+
+  0%,
+  49% {
+    background-color: rgb(7, 203, 4);
+  }
+
+  50%,
+  100% {
+    background-color: #84ddfd;
+  }
+}
+
+@keyframes blink-false {
+
+  0%,
+  49% {
+    background-color: rgb(248, 20, 20);
+  }
+
+  50%,
+  100% {
+    background-color: #84ddfd;
+  }
+}
+
+.jumbotron .game-play .wrong-answer {
+  animation: blink-false 0.2s 3;
+  background-color: rgb(248, 20, 20);
+}
+
+.jumbotron .game-play .true-answer {
+  animation: blink-true 0.2s 3;
+  background-color: rgb(7, 203, 4);
+}
+
+.jumbotron .game-play button:hover {
+  background-color: #b078ff;
+  border: 1px solid #d1b3fb;
 }
 
 .container .jumbotron {

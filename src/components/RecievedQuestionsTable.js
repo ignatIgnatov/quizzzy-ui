@@ -32,7 +32,7 @@ const RecievedQuestionsTable = () => {
 
                 <div className="jumbotron top-space">
                     <div className="container">
-                        <h3 className="text-center thin">All registred users</h3>
+                        <h3 className="text-center thin">All registered users</h3>
 
                         <table className="table table-striped">
                             <thead>
@@ -40,10 +40,6 @@ const RecievedQuestionsTable = () => {
                                     <th scope="col">#</th>
                                     <th scope="col">Author</th>
                                     <th scope="col">Question</th>
-                                    <th scope="col">True Answer</th>
-                                    <th scope="col">Wrong answer one</th>
-                                    <th scope="col">Wrong answer two</th>
-                                    <th scope="col">Wrong answer three</th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>

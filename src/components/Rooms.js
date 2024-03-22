@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 const Rooms = () => {
     const { user } = useContext(AuthContext);
-    console.log(user);
+
+    const navigate = useNavigate();
+
+    const goToTheGamePage = () => {
+        localStorage.setItem("category", "USER_QUESTIONS")
+        navigate("/game/room/u-q-start")
+    }
     return (
         <>
 
@@ -95,7 +103,7 @@ const Rooms = () => {
                             </div>
                             <div className="col-md-3 col-sm-6 highlight">
                                 <div className="h-body text-center">
-                                    <button className="btn room-btn room-fourth">
+                                    <button onClick={goToTheGamePage} className="btn room-btn room-fourth">
                                         <div className="h-caption">
                                             <h3>
                                                 {/* <i className="fa fa-cogs fa-5"></i> */}

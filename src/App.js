@@ -18,6 +18,8 @@ import About from "./components/About";
 import RecievedQuestionsTable from "./components/RecievedQuestionsTable";
 import RegistеredUsersTable from "./components/RegistеredUsersTable";
 import EditUserQuestionPage from "./components/EditUserQuestionPage";
+import GamePlayUserQuestions from "./components/GamePlayUserQuestions";
+import GamePlayUQStart from "./components/GamePlayUQStart";
 
 const initialAuthState = {
   id: "",
@@ -46,6 +48,8 @@ function App() {
           <Routes>
 
             <Route path="/" element={<Home />} />
+            <Route path="/game/room/user-questions-room" element={<GamePlayUserQuestions />} />
+            <Route path="/game/room/u-q-start" element={<GamePlayUQStart />} />
             <Route path="/admin/user-questions-table" element={<RecievedQuestionsTable />} />
             <Route path="/admin/registered-users-table" element={<RegistеredUsersTable />} />
             <Route path="/admin/edit-user-question" element={<EditUserQuestionPage />} />
