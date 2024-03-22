@@ -17,6 +17,7 @@ import TermsAndConditions from "./components/TermsAndConditions";
 import About from "./components/About";
 import RecievedQuestionsTable from "./components/RecievedQuestionsTable";
 import RegistеredUsersTable from "./components/RegistеredUsersTable";
+import EditUserQuestionPage from "./components/EditUserQuestionPage";
 
 const initialAuthState = {
   id: "",
@@ -47,6 +48,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/admin/user-questions-table" element={<RecievedQuestionsTable />} />
             <Route path="/admin/registered-users-table" element={<RegistеredUsersTable />} />
+            <Route path="/admin/edit-user-question" element={<EditUserQuestionPage />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/register" element={<Register />} />
             <Route path="/auth/logout" element={<Logout />} />

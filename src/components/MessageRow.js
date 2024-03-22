@@ -1,9 +1,13 @@
 import * as messageService from "../services/messageService";
 
+import { useNavigate } from "react-router-dom";
+
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
 const MessageCard = ({ messageRow }) => {
+
+    const navigate = useNavigate();
 
     const { user } = useContext(AuthContext);
 
@@ -14,6 +18,7 @@ const MessageCard = ({ messageRow }) => {
     const wrongAnswerOne = messageRow.wrongAnswerOne;
     const wrongAnswerTwo = messageRow.wrongAnswerTwo;
     const wrongAnswerThree = messageRow.wrongAnswerThree;
+    const approved = messageRow.approved;
 
 
     const deleteHandler = () => {
@@ -22,6 +27,11 @@ const MessageCard = ({ messageRow }) => {
                 alert(`Question with id ${id} deleted successfully!`)
                 window.location.reload();
             });
+    }
+
+    const editHandler = () => {
+        navigate("/admin/edit-user-question")
+        localStorage.setItem("QId", id)
     }
 
     return (
@@ -34,19 +44,14 @@ const MessageCard = ({ messageRow }) => {
                 <td>{wrongAnswerOne}</td>
                 <td>{wrongAnswerTwo}</td>
                 <td>{wrongAnswerThree}</td>
+
                 <td><input
-                    // onClick={approveHandler}
-                    className="btn btn-default"
-                    type="button"
-                    name="Approve"
-                    value="Approve"
-                /></td>
-                <td><input
-                    // onClick={editHandler}
+                    onClick={editHandler}
                     className="btn btn-default"
                     type="button"
                     name="edit"
-                    value="Edit"
+                    value="Approve"
+                    disabled={approved}
                 /></td>
                 <td><input
                     onClick={deleteHandler}
