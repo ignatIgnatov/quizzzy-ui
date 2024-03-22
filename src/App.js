@@ -48,11 +48,6 @@ function App() {
           <Routes>
 
             <Route path="/" element={<Home />} />
-            <Route path="/game/room/user-questions-room" element={<GamePlayUserQuestions />} />
-            <Route path="/game/room/u-q-start" element={<GamePlayUQStart />} />
-            <Route path="/admin/user-questions-table" element={<RecievedQuestionsTable />} />
-            <Route path="/admin/registered-users-table" element={<RegistеredUsersTable />} />
-            <Route path="/admin/edit-user-question" element={<EditUserQuestionPage />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/register" element={<Register />} />
             <Route path="/auth/logout" element={<Logout />} />
@@ -61,6 +56,11 @@ function App() {
             <Route path="/termsAndConditions" element={<TermsAndConditions />} />
             {user.token ? <Route path="/rooms" element={<Rooms />} /> : ""}
             {user.token ? <Route path="/messages" element={<Contact />} /> : ""}
+            {user.token ? <Route path="/game/room/user-questions-room" element={<GamePlayUserQuestions />} /> : ""}
+            {user.token ? <Route path="/game/room/u-q-start" element={<GamePlayUQStart />} /> : ""}
+            {user.token ? <Route path="/admin/user-questions-table" element={<RecievedQuestionsTable />} /> : ""}
+            {user.token ? <Route path="/admin/registered-users-table" element={<RegistеredUsersTable />} /> : ""}
+            {user.token ? <Route path="/admin/edit-user-question" element={<EditUserQuestionPage />} /> : ""}
 
           </Routes>
 
