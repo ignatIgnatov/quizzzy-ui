@@ -4,6 +4,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 import * as roomService from "../services/roomService";
+import * as userService from "../services/userService";
 
 import { useState, useEffect } from "react";
 
@@ -18,11 +19,12 @@ const GamePlayUserQuestions = () => {
     const [questions, setQuestions] = useState([]);
     const [randomQuestion, setRandomQuestion] = useState([]);
     const [buttonClicked, setButtonClicked] = useState(false);
-    const [seconds, setSeconds] = useState(3);
+    const [seconds, setSeconds] = useState(30);
     const [green, setGreen] = useState('');
     const [shuffledAnswers, setShuffledAnswers] = useState([]);
     const [timer, setTimer] = useState(null);
     const [timesUp, setTimesUp] = useState(false);
+    const [points, setPoints] = useState('');
 
     let question = randomQuestion.question;
 
@@ -35,6 +37,10 @@ const GamePlayUserQuestions = () => {
     };
 
     useEffect(() => {
+        userService.getUser(user.email, user.token)
+            .then((data) => {
+                setPoints(data.points);
+            })
         roomService.getAllQuestionsByCategory(user.token, category)
             .then((data) => {
                 setQuestions(data)
@@ -64,7 +70,7 @@ const GamePlayUserQuestions = () => {
         setTimesUp(false);
         setShuffledAnswers(answers.sort(() => Math.random() - 0.5));
         setButtonClicked(false);
-        setSeconds(3);
+        setSeconds(30);
 
         const newTimer = setInterval(() => {
 
@@ -89,6 +95,7 @@ const GamePlayUserQuestions = () => {
         const buttonValue = event.target.value;
 
         if (buttonValue === green) {
+            setPoints(p => p + 1);
             event.target.classList.add("true-answer");
         } else {
             event.target.classList.add("wrong-answer");
@@ -108,6 +115,13 @@ const GamePlayUserQuestions = () => {
         navigate("/rooms");
     }
 
+    const savePoints = () => {
+        userService.savePoints(user.email, points, user.token)
+            .then(() => {
+                //TODO: 
+            })
+    }
+
     return (
         <div>
             <header id="head" className="secondary"></header>
@@ -115,11 +129,12 @@ const GamePlayUserQuestions = () => {
                 <ol className="breadcrumb">
                     <li>User Questions Room</li>
                     <li className="active">{user.email}</li>
-                    <li className="active">0 pts.</li>
+                    <li className="active">{points} pts.</li>
                 </ol>
                 <h4>Time: {" "}{seconds}</h4>
-                <button onClick={toNextQuestion} className="btn-action">New Question</button>{" "}
-                <button onClick={toOtherRoom} className="btn-default">To other room</button>
+                <button onClick={toNextQuestion} className="btn btn-success">Next Question</button>{" "}
+                <button onClick={toOtherRoom} className="btn btn-action">To other room</button>{" "}
+                <button onClick={savePoints} className="btn btn-danger">Save Your Points</button>
             </div>
             {timesUp ? <h3 className="start-button blinking-text">...your 30 seconds are up. Go to next question...</h3> : <h3></h3>}
             <div className="jumbotron top-space">

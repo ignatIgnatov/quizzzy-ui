@@ -334,6 +334,10 @@
   padding-right: 40px;
 }
 
+.top-space {
+  margin-top: 60px;
+}
+
 .jumbotron p {
   font-size: inherit;
 }
@@ -348,8 +352,9 @@
 
 .jumbotron .room-btn {
   width: 15vw;
-  height: 30vh;
+  min-height: 60%;
   border: #4a4a4a solid 1px;
+  margin-bottom: 40px;
 }
 
 .jumbotron .room-btn:hover {
@@ -373,7 +378,7 @@
 }
 
 .user-question-info {
-  margin: 0px 20px 0px 20px;
+  /* margin: 0px 20px 0px 20px; */
   height: 25vh;
 }
 
