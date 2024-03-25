@@ -13,6 +13,7 @@ const Logout = () => {
     useEffect(() => {
         authService.logout(user.token).then((data) => {
             logout(data);
+            localStorage.clear();
             navigate("/");
         }).catch((err) => {
             navigate("/error")

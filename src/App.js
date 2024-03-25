@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useEffect } from "react";
 
 import useLocalStorage from "./hooks/useLocalStorage";
 
@@ -33,12 +34,24 @@ const initialAuthState = {
 function App() {
   const [user, setUser] = useLocalStorage("user", initialAuthState);
 
+  useEffect(() => {
+    const clearUserDataBeforeLogout = (event) => {
+      setUser(initialAuthState);
+    };
+
+    window.addEventListener('beforeLogout', clearUserDataBeforeLogout);
+
+    return () => {
+      window.removeEventListener('beforeLogout', clearUserDataBeforeLogout);
+    };
+  }, [setUser]);
+
   const login = (authData) => {
     setUser(authData);
   };
 
-  const logout = (data) => {
-    setUser(data);
+  const logout = () => {
+    setUser(initialAuthState);
   };
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
@@ -48,7 +61,6 @@ function App() {
         <main>
           <Routes>
 
-            <Route path="/error" element={<ErrorPage />} />
             <Route path="/" element={<Home />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/register" element={<Register />} />
@@ -56,13 +68,21 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/auth/register/successfully" element={<SuccessMessage />} />
             <Route path="/termsAndConditions" element={<TermsAndConditions />} />
-            {user.token ? <Route path="/rooms" element={<Rooms />} /> : ""}
-            {user.token ? <Route path="/messages" element={<Contact />} /> : ""}
-            {user.token ? <Route path="/game/room/user-questions-room" element={<GamePlayUserQuestions />} /> : ""}
-            {user.token ? <Route path="/game/room/u-q-start" element={<GamePlayUQStart />} /> : ""}
-            {user.token ? <Route path="/admin/user-questions-table" element={<RecievedQuestionsTable />} /> : ""}
-            {user.token ? <Route path="/admin/registered-users-table" element={<RegistеredUsersTable />} /> : ""}
-            {user.token ? <Route path="/admin/edit-user-question" element={<EditUserQuestionPage />} /> : ""}
+            {user.token ? (
+              <>
+                <Route path="/rooms" element={<Rooms />} />
+                <Route path="/messages" element={<Contact />} />
+                <Route path="/game/room/user-questions-room" element={<GamePlayUserQuestions />} />
+                <Route path="/game/room/u-q-start" element={<GamePlayUQStart />} />
+                <Route path="/admin/user-questions-table" element={<RecievedQuestionsTable />} />
+                <Route path="/admin/registered-users-table" element={<RegistеredUsersTable />} />
+                <Route path="/admin/edit-user-question" element={<EditUserQuestionPage />} />
+              </>
+            ) : (
+              <Route path="*" element={<Navigate to="/error" />} />
+            )}
+            <Route path="/error" element={<ErrorPage />} />
+            <Route path="*" element={<Navigate to="/error" />} />
 
           </Routes>
 
