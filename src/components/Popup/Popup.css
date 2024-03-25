@@ -1,0 +1,24 @@
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    animation: fadeIn 0.5s ease forwards;
+  }
+  
+  .popup-content {
+    text-align: center;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }

@@ -20,6 +20,7 @@ import RegistеredUsersTable from "./components/RegistеredUsersTable";
 import EditUserQuestionPage from "./components/EditUserQuestionPage";
 import GamePlayUserQuestions from "./components/GamePlayUserQuestions";
 import GamePlayUQStart from "./components/GamePlayUQStart";
+import ErrorPage from "./components/ErrorPage";
 
 const initialAuthState = {
   id: "",
@@ -47,6 +48,7 @@ function App() {
         <main>
           <Routes>
 
+            <Route path="/error" element={<ErrorPage />} />
             <Route path="/" element={<Home />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/register" element={<Register />} />

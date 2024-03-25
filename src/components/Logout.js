@@ -14,6 +14,8 @@ const Logout = () => {
         authService.logout(user.token).then((data) => {
             logout(data);
             navigate("/");
+        }).catch((err) => {
+            navigate("/error")
         });
     }, []);
 
