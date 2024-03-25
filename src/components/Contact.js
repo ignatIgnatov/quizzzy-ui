@@ -4,6 +4,8 @@ import { AuthContext } from "../contexts/AuthContext";
 
 import * as messageService from "../services/messageService";
 
+import Popup from './Popup/Popup';
+
 
 const Contact = () => {
     let navigate = useNavigate();
@@ -14,6 +16,7 @@ const Contact = () => {
     const [wrongOne, setWrongOne] = useState('');
     const [wrongTwo, setWrongTwo] = useState('');
     const [wrongThree, setWrongThree] = useState('');
+    const [showPopup, setShowPopup] = useState(false);
 
     const sendMessage = (e) => {
         e.preventDefault();
@@ -42,8 +45,11 @@ const Contact = () => {
                         setWrongThree(data.error.wrongAnswerThree)
                     }
                 } else {
-                    alert("Question send...")
-                    navigate("/rooms")
+                    setShowPopup(true);
+                    setTimeout(() => {
+                        navigate("/rooms")
+                    }, 2000)
+
                 }
 
             })
@@ -170,6 +176,7 @@ const Contact = () => {
                                         type="submit"
                                         value="Send question"
                                     />
+                                    <Popup text="sending question..." show={showPopup} setShow={setShowPopup} />
                                 </div>
                             </div>
                         </form>

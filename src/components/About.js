@@ -17,6 +17,9 @@ const About = () => {
 
                         <h4>Quizzzy is a knowledge game.</h4>
                         <p>Each user can choose a category in which to play.</p>
+                        <p>You have 30 seconds to answer the question. After that you can move to another question.</p>
+                        <p>Please, don't forget to save the earned points. Otherwise, they will not be added to your point asset and you will lose them.</p>
+                        <p>The game does not have an autosave for points. But once saved, they accumulate in your account and when you re-enter the game, you start with the points accumulated so far.</p>
                         <p>
                             The most interesting part of the game is the user questions category.
                             Each user can submit their own question to become part of the game.
@@ -32,7 +35,7 @@ const About = () => {
                             they stand in the leaderboard compared to other players.
                         </p>
                         <p>
-                            Each question asked by a player will earn them additional bonus points.
+                            Feature: Each question asked by a player will earn them additional bonus points.
                         </p>
 
 

@@ -28,7 +28,6 @@ const GamePlayUserQuestions = () => {
     const [timer, setTimer] = useState(null);
     const [timesUp, setTimesUp] = useState(false);
     const [points, setPoints] = useState('');
-    const [clicked, setClicked] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
 
     let question = randomQuestion.question;
@@ -112,7 +111,6 @@ const GamePlayUserQuestions = () => {
     }
 
     const toNextQuestion = () => {
-        setClicked(false);
         chooseNextQuestion();
     }
 
@@ -142,7 +140,7 @@ const GamePlayUserQuestions = () => {
                 <button onClick={toNextQuestion} className="btn btn-success">Next Question</button>{" "}
                 <button onClick={toOtherRoom} className="btn btn-action">To other room</button>{" "}
                 <button onClick={savePoints} className="btn btn-danger">Save Your Points</button>
-                <Popup text="Points saved!" show={showPopup} setShow={setShowPopup} />
+                <Popup text="saving points..." show={showPopup} setShow={setShowPopup} />
             </div>
             {timesUp ? <h3 className="start-button blinking-text">...your 30 seconds are up. Go to next question...</h3> : <h3></h3>}
             <div className="jumbotron top-space">

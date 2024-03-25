@@ -18,6 +18,7 @@ const Popup = ({ show, setShow, text }) => {
                     <div className="popup-content">
                         <span>{text}</span>
                     </div>
+                    <div className="waiting-animation"></div>
                 </div>
             )}
         </>

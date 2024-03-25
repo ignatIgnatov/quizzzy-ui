@@ -32,7 +32,7 @@ const RecievedQuestionsTable = () => {
 
                 <div className="jumbotron top-space">
                     <div className="container">
-                        <h3 className="text-center thin">All registered users</h3>
+                        <h3 className="text-center thin">All user questions</h3>
 
                         <table className="table table-striped">
                             <thead>

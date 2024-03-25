@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { useContext } from "react";
 
+import Popup from './Popup/Popup';
+
 const Register = () => {
 
     const { user } = useContext(AuthContext);
@@ -19,6 +21,7 @@ const Register = () => {
     const [emailErrors, setEmailErrors] = useState([]);
     const [passwordErrors, setPasswordErrors] = useState([]);
     const [error, setError] = useState('');
+    const [showPopup, setShowPopup] = useState(false);
 
 
     const registerSubmitHandler = (e) => {
@@ -41,13 +44,16 @@ const Register = () => {
                             setError('');
                         } else if (data.error) { setError(data.error) }
                     } else {
-                        user.token
-                            ? navigate("/admin/registered-users-table")
-                            : navigate("/auth/register/successfully")
+                        setShowPopup(true);
+                        setTimeout(() => {
+                            user.token
+                                ? navigate("/admin/registered-users-table")
+                                : navigate("/auth/login")
+                        }, 2000);
                     }
                 })
                 .catch(error => {
-                    alert(error)
+                    navigate("/error")
                 })
         } else {
             setUncheckedMessage("Please confirm Terms an Conditions!")
@@ -167,6 +173,7 @@ const Register = () => {
                                                 <button className="btn btn-action" type="submit">
                                                     Register
                                                 </button>
+                                                <Popup text="Registration successfully!" show={showPopup} setShow={setShowPopup} />
                                             </div>
                                         </div>
                                     </form>

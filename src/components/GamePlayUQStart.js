@@ -5,11 +5,14 @@ import { AuthContext } from "../contexts/AuthContext";
 
 import * as userService from "../services/userService";
 
+import Popup from './Popup/Popup';
+
 const GamePlayUQStart = () => {
 
     const { user } = useContext(AuthContext);
 
     const [points, setPoints] = useState('');
+    const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
         userService.getUser(user.email, user.token)
@@ -25,7 +28,10 @@ const GamePlayUQStart = () => {
     }
 
     const onStartHandler = () => {
-        navigate("/game/room/user-questions-room");
+        setShowPopup(true);
+        setTimeout(() => {
+            navigate("/game/room/user-questions-room");
+        }, 2150);
     }
 
     return (
@@ -44,6 +50,7 @@ const GamePlayUQStart = () => {
             <h5 className="start-button blinking-text">click Start to continue...</h5>
             <div className="start-button">
                 <button onClick={onStartHandler} className="btn start-btn">START</button>
+                <Popup text="loading questions..." show={showPopup} setShow={setShowPopup} />
             </div>
         </div>
     )

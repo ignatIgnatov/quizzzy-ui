@@ -10,7 +10,6 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
-import SuccessMessage from "./messages/SuccessMessage";
 import Rooms from "./components/Rooms";
 import Logout from "./components/Logout";
 import Contact from "./components/Contact";
@@ -66,7 +65,6 @@ function App() {
             <Route path="/auth/register" element={<Register />} />
             <Route path="/auth/logout" element={<Logout />} />
             <Route path="/about" element={<About />} />
-            <Route path="/auth/register/successfully" element={<SuccessMessage />} />
             <Route path="/termsAndConditions" element={<TermsAndConditions />} />
             {user.token ? (
               <>

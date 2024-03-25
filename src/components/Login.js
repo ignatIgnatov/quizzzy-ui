@@ -6,10 +6,13 @@ import { Link } from "react-router-dom";
 
 import * as authService from "../services/authService";
 
+import Popup from './Popup/Popup';
+
 const Login = () => {
     const navigate = useNavigate();
     const { user, login } = useContext(AuthContext);
     let [errorMessage, setErrorMessage] = useState('');
+    const [showPopup, setShowPopup] = useState(false);
 
     const onLoginHandler = (e) => {
         e.preventDefault();
@@ -23,16 +26,18 @@ const Login = () => {
             .login(email, password)
             .then((authData) => {
                 if (authData.token) {
-                    alert("You are logged in...");
-                    login(authData);
-                    navigate("/rooms");
+                    setShowPopup(true);
+                    setTimeout(() => {
+                        login(authData);
+                        navigate("/rooms");
+                    }, 2000)
                 } else {
                     setErrorMessage("Wrong email or password!");
                 }
             })
-        .catch((error) => {
-            alert(error);
-        });
+            .catch((error) => {
+                alert(error);
+            });
     };
 
     const handleInputChange = () => {
@@ -103,6 +108,7 @@ const Login = () => {
                                                 <button className="btn btn-action" type="submit">
                                                     Sign in
                                                 </button>
+                                                <Popup text="You are logged in" show={showPopup} setShow={setShowPopup} />
                                             </div>
                                         </div>
                                     </form>

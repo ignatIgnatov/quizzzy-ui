@@ -15,7 +15,7 @@ const Logout = () => {
             logout(data);
             localStorage.clear();
             navigate("/");
-        }).catch((err) => {
+        }).catch(() => {
             navigate("/error")
         });
     }, []);
