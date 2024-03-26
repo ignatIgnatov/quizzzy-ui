@@ -1,18 +1,29 @@
 import { Link } from "react-router-dom";
 
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+
+import Popup from './Popup/Popup';
+
 const Rooms = () => {
     const { user } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
+    const [showPopup, setShowPopup] = useState(false);
+
     const goToTheGamePage = () => {
         localStorage.setItem("category", "USER_QUESTIONS")
         navigate("/game/room/u-q-start")
     }
+
+    const inProgress = () => {
+        setShowPopup(true)
+    }
+
     return (
         <>
 
@@ -39,15 +50,16 @@ const Rooms = () => {
                     </div>
                 </header>
 
+                <Popup text="This room is in progress. Go to user questions room..." show={showPopup} setShow={setShowPopup} />
+
                 <div className="jumbotron top-space">
                     <div className="container">
                         <div className="row">
                             <div className="col-md-3 col-sm-6 highlight">
                                 <div className="h-body text-center">
-                                    <button className="btn room-btn room-first">
+                                    <button onClick={inProgress} className="btn room-btn room-first">
                                         <div className="h-caption">
                                             <h3>
-                                                {/* <i className="fa fa-cogs fa-5"></i> */}
                                                 Room 1
                                             </h3>
                                             <hr></hr>
@@ -58,10 +70,9 @@ const Rooms = () => {
                             </div>
                             <div className="col-md-3 col-sm-6 highlight">
                                 <div className="h-body text-center">
-                                    <button className="btn room-btn room-second">
+                                    <button onClick={inProgress} className="btn room-btn room-second">
                                         <div className="h-caption">
                                             <h3>
-                                                {/* <i className="fa fa-cogs fa-5"></i> */}
                                                 Room 2
                                             </h3>
                                             <hr></hr>
@@ -72,10 +83,9 @@ const Rooms = () => {
                             </div>
                             <div className="col-md-3 col-sm-6 highlight">
                                 <div className="h-body text-center">
-                                    <button className="btn room-btn room-third">
+                                    <button onClick={inProgress} className="btn room-btn room-third">
                                         <div className="h-caption">
                                             <h3>
-                                                {/* <i className="fa fa-cogs fa-5"></i> */}
                                                 Room 3
                                             </h3>
                                             <hr></hr>
@@ -89,7 +99,6 @@ const Rooms = () => {
                                     <button onClick={goToTheGamePage} className="btn room-btn room-fourth">
                                         <div className="h-caption">
                                             <h3>
-                                                {/* <i className="fa fa-cogs fa-5"></i> */}
                                                 USER QUESTIONS
                                             </h3>
                                             <hr></hr>

@@ -60,7 +60,7 @@ const Footer = () => {
                         <div className="col-md-6 widget">
                             <div className="widget-body">
                                 <p className="text-right">
-                                    Copyright &copy; 2024, Java Crew Team.
+                                    Copyright &copy; 2024, Ignatoff Team.
                                 </p>
                             </div>
                         </div>
