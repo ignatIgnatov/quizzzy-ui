@@ -8,8 +8,7 @@ import * as roomService from "../services/roomService";
 import * as userService from "../services/userService";
 
 import Popup from './Popup/Popup';
-
-
+import PopupWithoutAnimation from "./Popup/PopupWithoutAnimation";
 
 const GamePlayUserQuestions = () => {
 
@@ -29,8 +28,8 @@ const GamePlayUserQuestions = () => {
     const [timesUp, setTimesUp] = useState(false);
     const [points, setPoints] = useState('');
     const [showPopup, setShowPopup] = useState(false);
-
-    let question = randomQuestion.question;
+    const [noQuestions, setNoQuestions] = useState(false);
+    const [questionIndex, setQuestionIndex] = useState('');
 
     const removeButtonClassNames = () => {
         const buttons = document.querySelectorAll('.value');
@@ -61,37 +60,43 @@ const GamePlayUserQuestions = () => {
 
         removeButtonClassNames();
 
-        const index = Math.floor(Math.random() * questions.length);
-        setRandomQuestion(questions[index]);
+        if (questions.length === 0) {
+            setNoQuestions(true);
+        } else {
+            const index = Math.floor(Math.random() * questions.length);
+            setQuestionIndex(index);
+            setRandomQuestion(questions[index].question);
 
-        const trueAnswer = randomQuestion ? randomQuestion.trueAnswer : "";
-        setGreen(trueAnswer);
-        const wrongAnswerOne = randomQuestion ? randomQuestion.wrongAnswerOne : "";
-        const wrongAnswerTwo = randomQuestion ? randomQuestion.wrongAnswerTwo : "";
-        const wrongAnswerThree = randomQuestion ? randomQuestion.wrongAnswerThree : "";
-        const answers = [trueAnswer, wrongAnswerOne, wrongAnswerTwo, wrongAnswerThree];
+            const trueAnswer = questions[index] ? questions[index].trueAnswer : "...";
+            setGreen(trueAnswer);
 
-        setTimesUp(false);
-        setShuffledAnswers(answers.sort(() => Math.random() - 0.5));
-        setButtonClicked(false);
-        setSeconds(30);
+            const wrongAnswerOne = questions[index] ? questions[index].wrongAnswerOne : "...";
+            const wrongAnswerTwo = questions[index] ? questions[index].wrongAnswerTwo : "...";
+            const wrongAnswerThree = questions[index] ? questions[index].wrongAnswerThree : "...";
+            const answers = [trueAnswer, wrongAnswerOne, wrongAnswerTwo, wrongAnswerThree];
 
-        const newTimer = setInterval(() => {
+            setTimesUp(false);
+            setShuffledAnswers(answers.sort(() => Math.random() - 0.5));
+            setButtonClicked(false);
+            setSeconds(30);
 
-            setSeconds(prev => {
-                if (prev > 0) {
-                    return prev - 1;
-                } else {
-                    clearInterval(newTimer)
-                    setButtonClicked(true);
-                    setTimesUp(true);
-                    return prev;
-                }
-            })
-        }, 1000);
+            const newTimer = setInterval(() => {
 
-        setTimer(newTimer);
-        clearInterval(timer);
+                setSeconds(prev => {
+                    if (prev > 0) {
+                        return prev - 1;
+                    } else {
+                        clearInterval(newTimer)
+                        setButtonClicked(true);
+                        setTimesUp(true);
+                        return prev;
+                    }
+                })
+            }, 1000);
+
+            setTimer(newTimer);
+            clearInterval(timer);
+        }
     }
 
     const checkForTrueAnswer = (event) => {
@@ -101,6 +106,9 @@ const GamePlayUserQuestions = () => {
         if (buttonValue === green) {
             setPoints(p => p + 1);
             event.target.classList.add("true-answer");
+
+            questions.splice(questionIndex, 1);
+            setQuestions(questions);
         } else {
             event.target.classList.add("wrong-answer");
         }
@@ -141,11 +149,12 @@ const GamePlayUserQuestions = () => {
                 <button onClick={toOtherRoom} className="btn btn-action">To other room</button>{" "}
                 <button onClick={savePoints} className="btn btn-danger">Save Your Points</button>
                 <Popup text="saving points..." show={showPopup} setShow={setShowPopup} />
+                <PopupWithoutAnimation text="No more questions. Please try again later..." show={noQuestions} setShow={setNoQuestions} />
             </div>
             {timesUp ? <h3 className="start-button blinking-text">...your 30 seconds are up. Go to next question...</h3> : <h3></h3>}
             <div className="jumbotron top-space">
                 <div className="container">
-                    <h2 className="text-center thin">{question}</h2>
+                    <h2 className="text-center thin">{randomQuestion}</h2>
 
                     <div className="game-play">
                         <div className="up">
