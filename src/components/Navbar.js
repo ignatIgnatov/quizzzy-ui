@@ -70,6 +70,11 @@ const Navbar = () => {
                     <div className="navbar-collapse collapse">
                         <ul className="nav navbar-nav pull-right">
                             <li>
+                                {user.token
+                                    ? <Link to="/game/ranglist">Ranglist</Link>
+                                    : ""}
+                            </li>
+                            <li>
                                 {
                                     user.token
                                         ? <Link to="/rooms">Rooms</Link>

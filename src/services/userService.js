@@ -44,3 +44,15 @@ export const savePoints = async (email, points, token) => {
     });
     return await res.json();
 }
+
+export const getAllUsersOrderedByPoints = async (token) => {
+    const res = await fetch(`${baseUrl}`, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+        },
+    });
+    return await res.json();
+};

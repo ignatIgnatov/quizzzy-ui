@@ -21,6 +21,7 @@ import EditUserQuestionPage from "./components/EditUserQuestionPage";
 import GamePlayUserQuestions from "./components/GamePlayUserQuestions";
 import GamePlayUQStart from "./components/GamePlayUQStart";
 import ErrorPage from "./components/ErrorPage";
+import Ranglist from "./components/Ranglist/Ranglist";
 
 const initialAuthState = {
   id: "",
@@ -70,6 +71,7 @@ function App() {
               <>
                 <Route path="/rooms" element={<Rooms />} />
                 <Route path="/messages" element={<Contact />} />
+                <Route path="/game/ranglist" element={<Ranglist />} />
                 <Route path="/game/room/user-questions-room" element={<GamePlayUserQuestions />} />
                 <Route path="/game/room/u-q-start" element={<GamePlayUQStart />} />
                 <Route path="/admin/user-questions-table" element={<RecievedQuestionsTable />} />

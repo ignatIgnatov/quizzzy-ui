@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { useContext } from "react";
 
-import Popup from './Popup/Popup';
+import PopupWithoutAnimation from "./Popup/PopupWithoutAnimation";
 
 const Register = () => {
 
@@ -173,7 +173,7 @@ const Register = () => {
                                                 <button className="btn btn-action" type="submit">
                                                     Register
                                                 </button>
-                                                <Popup text="Registration successfully!" show={showPopup} setShow={setShowPopup} />
+                                                <PopupWithoutAnimation text="Registration successfully!" show={showPopup} setShow={setShowPopup} />
                                             </div>
                                         </div>
                                     </form>

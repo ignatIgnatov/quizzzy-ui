@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
-import Popup from './Popup/Popup';
+import PopupWithoutAnimation from './Popup/PopupWithoutAnimation';
 
 const Rooms = () => {
     const { user } = useContext(AuthContext);
@@ -50,7 +50,7 @@ const Rooms = () => {
                     </div>
                 </header>
 
-                <Popup text="This room is in progress. Go to user questions room..." show={showPopup} setShow={setShowPopup} />
+                <PopupWithoutAnimation text="This room is in progress. Go to user questions room..." show={showPopup} setShow={setShowPopup} />
 
                 <div className="jumbotron top-space">
                     <div className="container">

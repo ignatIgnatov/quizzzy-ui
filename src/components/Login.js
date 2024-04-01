@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import * as authService from "../services/authService";
 
-import Popup from './Popup/Popup';
+import PopupWithoutAnimation from "./Popup/PopupWithoutAnimation";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -108,7 +108,7 @@ const Login = () => {
                                                 <button className="btn btn-action" type="submit">
                                                     Sign in
                                                 </button>
-                                                <Popup text="You are logged in" show={showPopup} setShow={setShowPopup} />
+                                                <PopupWithoutAnimation text="You are logged in" show={showPopup} setShow={setShowPopup} />
                                             </div>
                                         </div>
                                     </form>
