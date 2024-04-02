@@ -35,7 +35,7 @@ const GamePlayUQStart = () => {
     }
 
     return (
-        <div>
+        <div className="row">
             <header id="head" className="secondary"></header>
             <div className="container">
                 <ol className="breadcrumb">

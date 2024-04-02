@@ -2,7 +2,7 @@ const Footer = () => {
     return (
         <footer id="footer" className="top-space">
             <div className="footer1">
-                <div className="container">
+                {/* <div className="container">
                     <div className="row">
                         <div className="col-md-3 widget">
                             <h3 className="widget-title">Contact</h3>
@@ -48,7 +48,7 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
 
             <div className="footer2">
@@ -60,7 +60,7 @@ const Footer = () => {
                         <div className="col-md-6 widget">
                             <div className="widget-body">
                                 <p className="text-right">
-                                    Copyright &copy; 2024, Ignatoff Team.
+                                    Copyright &copy; 2024, Quizzzy Team by Ignatoff
                                 </p>
                             </div>
                         </div>
