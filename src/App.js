@@ -23,6 +23,7 @@ import GamePlayUQStart from "./components/GamePlayUQStart";
 import ErrorPage from "./components/ErrorPage";
 import Ranglist from "./components/Ranglist/Ranglist";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import Instructions from "./components/ForgotPassword/Instructions";
 
 const initialAuthState = {
   id: "",
@@ -69,6 +70,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/termsAndConditions" element={<TermsAndConditions />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/forgot-pws-instr" element={<Instructions />} />
             {user.token ? (
               <>
                 <Route path="/rooms" element={<Rooms />} />

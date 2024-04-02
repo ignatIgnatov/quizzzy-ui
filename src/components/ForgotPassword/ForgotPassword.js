@@ -1,8 +1,42 @@
+import * as authService from "../../services/authService";
+
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+import PopupWithoutAnimation from "../Popup/PopupWithoutAnimation";
+
 const ForgotPassword = () => {
 
-    const onSubmitHandler = () => {
+    const navigate = useNavigate();
 
+    const [showPopup, setShowPopup] = useState(false);
+    const [error, setError] = useState('');
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+
+        let formData = new FormData(e.currentTarget);
+        let email = formData.get("email");
+        let password = formData.get("password");
+        let confirmPassword = formData.get("confirmPassword")
+
+        authService
+            .changePassword(email, password, confirmPassword)
+            .then((data) => {
+                if (data.error) {
+                    setError("Incorrect email or password!")
+                } else {
+                    setShowPopup(true);
+                    setTimeout(() => {
+                        navigate("/auth/login");
+                    }, 2000)
+                }
+            });
     }
+
+    const handleInputChange = () => {
+        setError('');
+    };
 
     return (
         <>
@@ -11,21 +45,21 @@ const ForgotPassword = () => {
 
                 <ol className="breadcrumb">
                     <li>Users</li>
-                    <li className="active">Forgot password</li>
+                    <li className="active">Change password</li>
                 </ol>
 
                 <div className="row">
                     <article className="col-md-4 col-md-offset-3 col-sm-4 col-sm-offset-2">
 
-                        
-                        <form onSubmit={onSubmitHandler} method="POST">
+
+                        <form onSubmit={onSubmitHandler} method="PUT">
+                        {error ? <div><small className="text-danger">{error}</small></div> : ""}
                             <div className="top-margin">
-                                <label htmlFor="username">
+                                <label htmlFor="email">
                                     Email <span className="text-danger">*</span>
-                                    {/* {errorMessage ? <div><small className="text-danger">{errorMessage}</small></div> : ""} */}
                                 </label>
                                 <input
-                                    // onChange={handleInputChange}
+                                    onChange={handleInputChange}
                                     type="email"
                                     name="email"
                                     id="email"
@@ -36,10 +70,9 @@ const ForgotPassword = () => {
                             <div className="top-margin">
                                 <label htmlFor="password">
                                     Password <span className="text-danger">*</span>
-                                    {/* {errorMessage ? <div><small className="text-danger">{errorMessage}</small></div> : ""} */}
                                 </label>
                                 <input
-                                    // onChange={handleInputChange}
+                                    onChange={handleInputChange}
                                     type="password"
                                     name="password"
                                     id="password"
@@ -48,14 +81,14 @@ const ForgotPassword = () => {
                                 />
                             </div>
                             <div className="top-margin">
-                                <label htmlFor="password">
+                                <label htmlFor="confirmPassword">
                                     Confirm Password <span className="text-danger">*</span>
                                 </label>
                                 <input
-                                    // onChange={handleInputChange}
+                                    onChange={handleInputChange}
                                     type="password"
-                                    name="password"
-                                    id="password"
+                                    name="confirmPassword"
+                                    id="confirmPassword"
                                     className="form-control"
                                     placeholder="confirm your new password"
                                 />
@@ -66,15 +99,12 @@ const ForgotPassword = () => {
                             <div className="row">
                                 <div className="col-lg-4 text-right">
                                     <button className="btn btn-action" type="submit">
-                                        Submit
+                                        Change password
                                     </button>
-                                    {/* <PopupWithoutAnimation text="You are logged in" show={showPopup} setShow={setShowPopup} /> */}
+                                    <PopupWithoutAnimation text="Password changed!" show={showPopup} setShow={setShowPopup} />
                                 </div>
                             </div>
                         </form>
-
-
-
                     </article>
                 </div>
             </div>

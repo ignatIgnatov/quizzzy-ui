@@ -101,7 +101,7 @@ const Login = () => {
                                         <div className="row">
                                             <div className="col-lg-8">
                                                 <b>
-                                                    <a href="">Forgot password?</a>
+                                                    <Link to="/forgot-pws-instr">Forgot password?</Link>
                                                 </b>
                                             </div>
                                             <div className="col-lg-4 text-right">

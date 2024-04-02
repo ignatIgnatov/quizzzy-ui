@@ -34,3 +34,14 @@ export const logout = (token) => {
         },
     });
 };
+
+export const changePassword = async (email, password, confirmPassword) => {
+    const res = await fetch(`${baseUrl}/ch-pwd`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password, confirmPassword }),
+    });
+    return await res.json();
+};
