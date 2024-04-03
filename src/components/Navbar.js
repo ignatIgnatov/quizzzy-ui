@@ -37,6 +37,9 @@ const Navbar = () => {
                     <li>
                         <Link to="/auth/register">Register User</Link>
                     </li>
+                    <li>
+                        <Link to="/admin/general-msg">Send Message To All</Link>
+                    </li>
                 </ul>
             </li>
             <ul className="nav navbar-nav pull-right" style={{ marginLeft: 70 }}>

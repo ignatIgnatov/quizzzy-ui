@@ -24,6 +24,7 @@ import ErrorPage from "./components/ErrorPage";
 import Ranglist from "./components/Ranglist/Ranglist";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Instructions from "./components/ForgotPassword/Instructions";
+import SystemMessage from "./components/SystemMessage/SystemMessage";
 
 const initialAuthState = {
   id: "",
@@ -81,6 +82,7 @@ function App() {
                 <Route path="/admin/user-questions-table" element={<RecievedQuestionsTable />} />
                 <Route path="/admin/registered-users-table" element={<RegistеredUsersTable />} />
                 <Route path="/admin/edit-user-question" element={<EditUserQuestionPage />} />
+                <Route path="/admin/general-msg" element={<SystemMessage />} />
               </>
             ) : (
               <Route path="*" element={<Navigate to="/error" />} />
