@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:8080/auth/mail";
+const baseUrl = "http://localhost:8080/mail";
 
 export const sendEmail = async (email) => {
     let res = await fetch(`${baseUrl}/send`, {
