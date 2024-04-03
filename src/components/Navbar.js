@@ -29,7 +29,7 @@ const Navbar = () => {
                 </Link>
                 <ul className="dropdown-menu">
                     <li>
-                        <Link to="/admin/registered-users-table">Registred Users</Link>
+                        <Link to="/admin/registered-users-table">Registered Users</Link>
                     </li>
                     <li>
                         <Link to="/admin/user-questions-table">Received User Questions</Link>
