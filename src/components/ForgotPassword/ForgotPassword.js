@@ -1,4 +1,5 @@
 import * as authService from "../../services/authService";
+import * as mailService from "../../services/mailService";
 
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -26,12 +27,14 @@ const ForgotPassword = () => {
                 if (data.error) {
                     setError("Incorrect email or password!")
                 } else {
+                    mailService.sendEmailForChangedPassword(email, password);
                     setShowPopup(true);
                     setTimeout(() => {
                         navigate("/auth/login");
                     }, 2000)
                 }
             });
+
     }
 
     const handleInputChange = () => {
@@ -53,7 +56,7 @@ const ForgotPassword = () => {
 
 
                         <form onSubmit={onSubmitHandler} method="PUT">
-                        {error ? <div><small className="text-danger">{error}</small></div> : ""}
+                            {error ? <div><small className="text-danger">{error}</small></div> : ""}
                             <div className="top-margin">
                                 <label htmlFor="email">
                                     Email <span className="text-danger">*</span>

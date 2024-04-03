@@ -11,3 +11,15 @@ export const sendEmail = async (email) => {
 
     return await res.json();
 };
+
+export const sendEmailForChangedPassword = async (email, password) => {
+    let res = await fetch(`${baseUrl}/ch-pwd`, {
+        method: "POST",
+        headers: {
+            "content-type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+    });
+
+    return await res.json();
+};
