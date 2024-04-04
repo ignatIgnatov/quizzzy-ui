@@ -33,7 +33,8 @@ const ForgotPassword = () => {
                         navigate("/auth/login");
                     }, 2000)
                 }
-            });
+            })
+            .catch(() => navigate("/error"));
 
     }
 

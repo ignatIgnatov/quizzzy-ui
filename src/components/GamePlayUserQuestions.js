@@ -44,10 +44,13 @@ const GamePlayUserQuestions = () => {
             .then((data) => {
                 setPoints(data.points);
             })
+            .catch(() => navigate("/error"));
+
         roomService.getAllQuestionsByCategory(user.token, category)
             .then((data) => {
                 setQuestions(data)
             })
+            .catch(() => navigate("/error"));
     }, []);
 
     useEffect(() => {
@@ -133,6 +136,7 @@ const GamePlayUserQuestions = () => {
             .then(() => {
                 setShowPopup(true);
             })
+            .catch(() => navigate("/error"))
     }
 
     return (

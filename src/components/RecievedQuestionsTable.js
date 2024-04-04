@@ -2,6 +2,7 @@ import * as messageService from "../services/messageService";
 import MessageRow from "./MessageRow";
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../contexts/AuthContext";
 import { useContext } from "react";
@@ -12,12 +13,16 @@ const RecievedQuestionsTable = () => {
 
     const token = user.token;
 
+    const navigate = useNavigate();
+
     const [message, setMessage] = useState([]);
 
     useEffect(() => {
-        messageService.getAllUserQuestions(token).then((data) => {
-            setMessage(Object.values(data));
-        });
+        messageService.getAllUserQuestions(token)
+            .then((data) => {
+                setMessage(Object.values(data));
+            })
+            .catch(() => navigate("/error"));
     }, []);
 
     return (

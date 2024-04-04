@@ -53,7 +53,7 @@ const Contact = () => {
                 }
 
             })
-            .catch((error) => alert(error))
+            .catch(() => navigate("/error"))
     };
 
     const handleInputChange = () => {

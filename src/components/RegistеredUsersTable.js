@@ -2,6 +2,7 @@ import * as userService from "../services/userService";
 import UserRow from "./UserRow"
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../contexts/AuthContext";
 import { useContext } from "react";
@@ -10,14 +11,18 @@ const RegistеredUsersTable = () => {
 
     const { user } = useContext(AuthContext);
 
+    const navigate = useNavigate();
+
     const token = user.token;
 
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        userService.getAllUsers(token).then((data) => {
-            setUsers(Object.values(data));
-        });
+        userService.getAllUsers(token)
+            .then((data) => {
+                setUsers(Object.values(data));
+            })
+            .catch(() => navigate("/error"));
     }, []);
 
     return (

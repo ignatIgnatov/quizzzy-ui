@@ -2,6 +2,7 @@ import * as userService from "../../services/userService"
 import RanglistRow from "./RanglistRow";
 
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../../contexts/AuthContext";
 
@@ -9,14 +10,18 @@ const Ranglist = () => {
 
     const { user } = useContext(AuthContext);
 
+    const navigate = useNavigate();
+
     const token = user.token;
 
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        userService.getAllUsersOrderedByPoints(token).then((data) => {
-            setUsers(Object.values(data));
-        });
+        userService.getAllUsersOrderedByPoints(token)
+            .then((data) => {
+                setUsers(Object.values(data));
+            })
+            .catch(() => navigate("/error"));
     }, []);
 
     return (

@@ -35,8 +35,8 @@ const Login = () => {
                     setErrorMessage("Wrong email or password!");
                 }
             })
-            .catch((error) => {
-                alert(error);
+            .catch(() => {
+                navigate("/error");
             });
     };
 

@@ -1,7 +1,7 @@
 import * as mailService from "../../services/mailService"
 
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 import PopupWithoutAnimation from "../Popup/PopupWithoutAnimation";
 

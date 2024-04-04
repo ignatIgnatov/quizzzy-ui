@@ -1,5 +1,5 @@
 /*******************************/
-/*         Navigatioin         */
+/*         Navigation         */
 /*******************************/
 .navbar-inverse {
   width: 98vw;
@@ -13,16 +13,6 @@
 .navbar-inverse *:focus {
   outline: 0;
 }
-
-@media (max-width: 767px) {
-  .navbar-inverse {
-    background: rgba(0, 0, 0, 0.9);
-  }
-}
-
-/* .navbar-nav > li {
-  font-size: 18px;
-} */
 
 .navbar-inverse .navbar-nav>li>a,
 .navbar-inverse .navbar-nav>.open ul>a {
@@ -106,30 +96,30 @@
   border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
-/* .navbar-collapse {
-  border: 0 none;
-  border-top: 0 none;
-  box-shadow: none;
-} */
-
 @media (max-width: 767px) {
-  ul {
+  .navbar-inverse .navbar-collapse {
     text-align: center;
-    width: 100%;
-    padding-bottom: 10px;
+  }
+  
+  .navbar-inverse .navbar-collapse ul {
+    padding: 0;
+  }
+  
+  .navbar-inverse .navbar-nav {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
   }
 
-  .navbar-collapse ul .btn {
-    max-width: 50%;
-    margin: 0 auto;
+  .navbar-inverse .navbar-nav>li {
+    display: block;
+  }
+
+  .navbar-inverse .navbar-nav>li>a {
+    padding: 10px 15px;
   }
 }
 
-/* .navbar-static-top,
-.navbar-fixed-top,
-.navbar-fixed-bottom {
-  border-radius: 0;
-} */
 
 /*******************************/
 /*          Buttons            */
@@ -244,6 +234,7 @@
   background-color: rgb(4, 234, 4);
 }
 
+
 /*******************************/
 /*           Jumbotron         */
 /*******************************/
@@ -287,12 +278,10 @@
 }
 
 @keyframes blink-true {
-
   0%,
   49% {
     background-color: rgb(7, 203, 4);
   }
-
   50%,
   100% {
     background-color: #84ddfd;
@@ -300,12 +289,10 @@
 }
 
 @keyframes blink-false {
-
   0%,
   49% {
     background-color: rgb(248, 20, 20);
   }
-
   50%,
   100% {
     background-color: #84ddfd;
@@ -328,7 +315,6 @@
 }
 
 .container .jumbotron {
-
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -380,7 +366,6 @@
 }
 
 .user-question-info {
-  /* margin: 0px 20px 0px 20px; */
   height: 25vh;
 }
 

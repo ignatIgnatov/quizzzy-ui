@@ -19,6 +19,7 @@ const GamePlayUQStart = () => {
             .then((data) => {
                 setPoints(data.points);
             })
+            .catch(() => navigate("error"))
     }, [])
 
     const navigate = useNavigate();

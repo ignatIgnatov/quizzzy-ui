@@ -22,7 +22,8 @@ const MessageCard = ({ messageRow }) => {
             .then(() => {
                 alert(`Question with id ${id} deleted successfully!`)
                 window.location.reload();
-            });
+            })
+            .catch(() => navigate("/error"));
     }
 
     const editHandler = () => {

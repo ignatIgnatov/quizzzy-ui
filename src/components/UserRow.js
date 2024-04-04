@@ -1,6 +1,7 @@
 
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 import * as userService from "../services/userService";
 
@@ -9,6 +10,8 @@ import PopupWithoutAnimation from "./Popup/PopupWithoutAnimation";
 const UserCard = ({ userRow }) => {
     const { user } = useContext(AuthContext);
     const [showPopup, setShowPopup] = useState(false);
+
+    const navigate = useNavigate();
 
     const id = userRow.id;
     const firstName = userRow.firstName;
@@ -21,7 +24,8 @@ const UserCard = ({ userRow }) => {
             .then(() => {
                 setShowPopup(true)
                 window.location.reload();
-            });
+            })
+            .catch(() => navigate("/error"));
     }
 
     let isSameUser = false;

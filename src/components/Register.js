@@ -53,7 +53,7 @@ const Register = () => {
                         }, 2000);
                     }
                 })
-                .catch(error => {
+                .catch(() => {
                     navigate("/error")
                 })
         } else {
