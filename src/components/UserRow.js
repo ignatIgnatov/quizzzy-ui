@@ -1,12 +1,14 @@
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+
+import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
 import * as userService from "../services/userService";
 
+import PopupWithoutAnimation from "./Popup/PopupWithoutAnimation";
+
 const UserCard = ({ userRow }) => {
     const { user } = useContext(AuthContext);
-    const navigate = useNavigate();
+    const [showPopup, setShowPopup] = useState(false);
 
     const id = userRow.id;
     const firstName = userRow.firstName;
@@ -17,7 +19,7 @@ const UserCard = ({ userRow }) => {
     const deleteHandler = () => {
         userService.deleteUser(email, token)
             .then(() => {
-                alert(`User with email ${email} deleted successfully!`)
+                setShowPopup(true)
                 window.location.reload();
             });
     }
@@ -57,6 +59,7 @@ const UserCard = ({ userRow }) => {
                     }
                 </td>
             </tr>
+            <PopupWithoutAnimation text="User deleted successfully!" show={showPopup} setShow={setShowPopup} />
         </>
     );
 };
