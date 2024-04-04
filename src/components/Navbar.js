@@ -35,6 +35,9 @@ const Navbar = () => {
                         <Link to="/admin/user-questions-table">Received User Questions</Link>
                     </li>
                     <li>
+                        <Link to="/admin/unapproved-questions-table">Unapproved Questions</Link>
+                    </li>
+                    <li>
                         <Link to="/auth/register">Register User</Link>
                     </li>
                     <li>

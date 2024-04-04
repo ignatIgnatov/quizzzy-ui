@@ -1,5 +1,5 @@
 /*******************************/
-/*         Navigation         */
+/*         Navigatioin         */
 /*******************************/
 .navbar-inverse {
   width: 98vw;
@@ -97,26 +97,53 @@
 }
 
 @media (max-width: 767px) {
-  .navbar-inverse .navbar-collapse {
+  .navbar-nav {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .secondary {
+    margin-top: 80px;
+  }
+
+  .img-left {
+    display: none;
+  }
+
+  .img-right {
+    display: none;
+  }
+
+  .image-slogan {
+    display: none;
+  }
+
+  .start-button {
     text-align: center;
   }
-  
-  .navbar-inverse .navbar-collapse ul {
-    padding: 0;
-  }
-  
-  .navbar-inverse .navbar-nav {
-    display: inline-block;
-    float: none;
-    vertical-align: top;
+
+  .row {
+    padding: 30px 10px 10px 10px;
   }
 
-  .navbar-inverse .navbar-nav>li {
-    display: block;
+  .navbar-collapse {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: none;
   }
 
-  .navbar-inverse .navbar-nav>li>a {
-    padding: 10px 15px;
+  ul {
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+  }
+
+  .navbar-collapse ul .btn {
+    max-width: 50%;
+    margin: 0 auto;
   }
 }
 
@@ -234,7 +261,6 @@
   background-color: rgb(4, 234, 4);
 }
 
-
 /*******************************/
 /*           Jumbotron         */
 /*******************************/
@@ -278,10 +304,12 @@
 }
 
 @keyframes blink-true {
+
   0%,
   49% {
     background-color: rgb(7, 203, 4);
   }
+
   50%,
   100% {
     background-color: #84ddfd;
@@ -289,10 +317,12 @@
 }
 
 @keyframes blink-false {
+
   0%,
   49% {
     background-color: rgb(248, 20, 20);
   }
+
   50%,
   100% {
     background-color: #84ddfd;
@@ -339,7 +369,7 @@
 }
 
 .jumbotron .room-btn {
-  width: 15vw;
+  width: 250px;
   min-height: 60%;
   border: #4a4a4a solid 1px;
   margin-bottom: 40px;
@@ -366,7 +396,8 @@
 }
 
 .user-question-info {
-  height: 25vh;
+  min-height: 25vh;
+  padding: 5px;
 }
 
 /*******************************/

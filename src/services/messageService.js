@@ -53,4 +53,16 @@ export const approveQuestion = async (id, question, trueAnswer, wrongAnswerOne, 
         body: JSON.stringify({ question, trueAnswer, wrongAnswerOne, wrongAnswerTwo, wrongAnswerThree }),
     });
     return await res.json();
-}
+};
+
+export const getAllUnapprovesQuestions = async (token) => {
+    const res = await fetch(`${baseUrl}/unapproved`, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+        },
+    });
+    return await res.json();
+};
