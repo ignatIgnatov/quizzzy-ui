@@ -11,20 +11,28 @@ const Home = () => {
       <header id="head">
         <div className="container head-container">
           <div className="row">
-            <img className="lead blinking-text" src="/assets/images/challenge-logo.png"></img>
+            <Link to="/auth/login">
+              <img className="lead blinking-text" src="/assets/images/challenge-logo.png"></img>
+            </Link>
           </div>
         </div>
       </header>
 
       <main id="main">
         <div className="container left secondary">
-          <img className="img-left" src="/assets/images/get-in-the-game.png"></img>
+          <Link to="/auth/login">
+            <img className="img-left" src="/assets/images/get-in-the-game.png"></img>
+          </Link>
         </div>
         <div className="container text-center secondary">
-          <img className="image-slogan" src="/assets/images/quizzzy-high-resolution-logo-transparent.png"></img>
+          <Link to="/auth/login">
+            <img className="image-slogan" src="/assets/images/quizzzy-high-resolution-logo-transparent.png"></img>
+          </Link>
         </div>
         <div className="container right secondary">
-          <img className="img-right" src="/assets/images/free.png"></img>
+          <Link to="/auth/login">
+            <img className="img-right" src="/assets/images/free.png"></img>
+          </Link>
         </div>
       </main>
 

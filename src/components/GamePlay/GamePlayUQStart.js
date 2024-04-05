@@ -36,7 +36,7 @@ const GamePlayUQStart = () => {
     }
 
     return (
-        <div className="row">
+        <>
             <header id="head" className="secondary"></header>
             <div className="container">
                 <ol className="breadcrumb">
@@ -53,7 +53,7 @@ const GamePlayUQStart = () => {
                 <button onClick={onStartHandler} className="btn start-btn">START</button>
                 <Popup text="loading questions..." show={showPopup} setShow={setShowPopup} />
             </div>
-        </div>
+        </>
     )
 }
 

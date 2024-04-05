@@ -103,6 +103,7 @@
   }
 
   .secondary {
+    /* display: none; */
     margin-top: 80px;
   }
 
@@ -134,16 +135,20 @@
     border: none;
   }
 
-  ul {
-    text-align: center;
+  .navbar-collapse .pull-right {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     width: 100%;
     padding-bottom: 10px;
   }
 
-  .navbar-collapse ul .btn {
-    max-width: 50%;
-    margin: 0 auto;
+  .navbar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 

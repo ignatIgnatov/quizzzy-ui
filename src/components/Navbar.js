@@ -6,14 +6,12 @@ import { AuthContext } from "../contexts/AuthContext";
 const Navbar = () => {
     const { user } = useContext(AuthContext);
 
-    const category = localStorage.getItem('category');
-
     const userPanel = (
         <>
             <li>
                 <Link to="/user/my-profile">My profile</Link>
             </li>
-            <ul className="nav navbar-nav pull-right" style={{ marginLeft: 70 }}>
+            <ul className="nav navbar-nav" style={{ marginLeft: 70 }}>
                 <li>
                     <Link to="/auth/logout">Logout</Link>
                 </li>
@@ -45,7 +43,7 @@ const Navbar = () => {
                     </li>
                 </ul>
             </li>
-            <ul className="nav navbar-nav pull-right" style={{ marginLeft: 70 }}>
+            <ul className="nav navbar-nav" style={{ marginLeft: 70 }}>
                 <li>
                     <Link to="/auth/logout">Logout</Link>
                 </li>
@@ -66,10 +64,8 @@ const Navbar = () => {
                 <div className="container">
                     <div className="navbar-header">
                         <ul className="nav navbar-nav">
-                            <li>
-                                <Link className="navbar-brand" to="/" >
-                                    <img src="../assets/images/logo.png" style={{ width: "85px" }} alt="Logo" />
-                                </Link>
+                            <li className="navbar-brand">
+                                <img src="../../assets/images/logo.png" style={{ width: "85px" }} alt="Logo" />
                             </li>
                         </ul>
                     </div>
