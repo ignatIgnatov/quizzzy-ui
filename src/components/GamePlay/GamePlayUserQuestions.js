@@ -1,14 +1,14 @@
 import { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import * as roomService from "../services/roomService";
-import * as userService from "../services/userService";
+import * as roomService from "../../services/roomService";
+import * as userService from "../../services/userService";
 
-import Popup from './Popup/Popup';
-import PopupWithoutAnimation from "./Popup/PopupWithoutAnimation";
+import Popup from '../Popup/Popup';
+import PopupWithoutAnimation from "../Popup/PopupWithoutAnimation";
 
 const GamePlayUserQuestions = () => {
 

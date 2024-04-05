@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 
 import { useState, useEffect, useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
-import * as userService from "../services/userService";
+import * as userService from "../../services/userService";
 
-import Popup from './Popup/Popup';
+import Popup from '../Popup/Popup';
 
 const GamePlayUQStart = () => {
 

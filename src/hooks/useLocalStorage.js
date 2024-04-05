@@ -22,7 +22,7 @@ const useLocalStorage = (key, initialValue) => {
       localStorage.setItem(key, JSON.stringify(value));
 
       setState(value);
-    } catch (err) {}
+    } catch (err) { }
     //save to state
   };
 

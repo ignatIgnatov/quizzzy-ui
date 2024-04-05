@@ -1,10 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useState, useEffect } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
-import * as messageService from "../services/messageService";
+import * as questionService from "../../services/questionService";
 
-const EditUserQuestionPage = () => {
+import Popup from '../Popup/Popup';
+
+
+const Contact = () => {
+    let navigate = useNavigate();
 
     const { user } = useContext(AuthContext);
     const [questionError, setQuestionError] = useState('');
@@ -12,24 +16,17 @@ const EditUserQuestionPage = () => {
     const [wrongOne, setWrongOne] = useState('');
     const [wrongTwo, setWrongTwo] = useState('');
     const [wrongThree, setWrongThree] = useState('');
+    const [showPopup, setShowPopup] = useState(false);
 
-    const navigate = useNavigate();
-    const [question, setQuestion] = useState([]);
-    const id = localStorage.getItem("QId");
+    const sendMessage = (e) => {
+        e.preventDefault();
 
-    useEffect(() => {
-        messageService.getQuestion(id, user.token).then((data) => {
-            setQuestion(data);
-        });
-    }, []);
+        let { question, trueAnswer, wrongAnswerOne, wrongAnswerTwo, wrongAnswerThree } = Object.fromEntries(
+            new FormData(e.currentTarget)
+        );
 
-
-    const updateHandler = (event) => {
-        event.preventDefault();
-
-        let { question, trueAnswer, wrongAnswerOne, wrongAnswerTwo, wrongAnswerThree } = Object.fromEntries(new FormData(event.currentTarget));
-
-        messageService.approveQuestion(id, question, trueAnswer, wrongAnswerOne, wrongAnswerTwo, wrongAnswerThree, user.token)
+        questionService
+            .createQuestion(question, trueAnswer, wrongAnswerOne, wrongAnswerTwo, wrongAnswerThree, user.token)
             .then((data) => {
                 if (data.error) {
                     if (data.error.question) {
@@ -48,13 +45,16 @@ const EditUserQuestionPage = () => {
                         setWrongThree(data.error.wrongAnswerThree)
                     }
                 } else {
-                    localStorage.removeItem("QId");
-                    navigate("/admin/user-questions-table")
+                    setShowPopup(true);
+                    setTimeout(() => {
+                        navigate("/rooms")
+                    }, 2000)
+
                 }
 
             })
             .catch(() => navigate("/error"))
-    }
+    };
 
     const handleInputChange = () => {
         setQuestionError('');
@@ -68,18 +68,22 @@ const EditUserQuestionPage = () => {
         <div>
             <header id="head" className="secondary"></header>
             <div className="container">
-
                 <ol className="breadcrumb">
-                    <li>Admin</li>
-                    <li className="active">Edit User Question</li>
+                    <li>Home</li>
+                    <li className="active">Send Your Question</li>
                 </ol>
+
                 <div className="row">
                     <article className="col-sm-9 maincontent">
                         <header className="page-header">
-                            <h1 className="page-title">Edit User Question</h1>
+                            <h1 className="page-title">Send Your Question</h1>
                         </header>
+
+                        <p>
+                            In this section you can submit your own question. It will be reviewed by a moderator and upon approval will become part of the game in a special room - questions from users.
+                        </p>
                         <br />
-                        <form onSubmit={updateHandler} method="POST">
+                        <form onSubmit={sendMessage} method="POST">
                             <div className="row">
                             </div>
                             <br />
@@ -94,7 +98,6 @@ const EditUserQuestionPage = () => {
                                         className="form-control"
                                         name="question"
                                         rows="3"
-                                        defaultValue={question.question}
                                         onChange={handleInputChange}
                                     ></textarea>
 
@@ -113,7 +116,6 @@ const EditUserQuestionPage = () => {
                                         className="form-control"
                                         name="trueAnswer"
                                         rows="1"
-                                        defaultValue={question.trueAnswer}
                                         onChange={handleInputChange}
                                     ></textarea>
                                 </div>
@@ -129,7 +131,6 @@ const EditUserQuestionPage = () => {
                                         className="form-control"
                                         name="wrongAnswerOne"
                                         rows="1"
-                                        defaultValue={question.wrongAnswerOne}
                                         onChange={handleInputChange}
                                     ></textarea>
                                 </div>
@@ -145,7 +146,6 @@ const EditUserQuestionPage = () => {
                                         className="form-control"
                                         name="wrongAnswerTwo"
                                         rows="1"
-                                        defaultValue={question.wrongAnswerTwo}
                                         onChange={handleInputChange}
                                     ></textarea>
                                 </div>
@@ -161,7 +161,6 @@ const EditUserQuestionPage = () => {
                                         className="form-control"
                                         name="wrongAnswerThree"
                                         rows="1"
-                                        defaultValue={question.wrongAnswerThree}
                                         onChange={handleInputChange}
                                     ></textarea>
                                 </div>
@@ -175,18 +174,17 @@ const EditUserQuestionPage = () => {
                                     <input
                                         className="btn btn-action"
                                         type="submit"
-                                        value="Approve"
+                                        value="Send question"
                                     />
+                                    <Popup text="sending question..." show={showPopup} setShow={setShowPopup} />
                                 </div>
                             </div>
                         </form>
                     </article>
                 </div>
-
             </div>
-
         </div>
-    )
-}
+    );
+};
 
-export default EditUserQuestionPage;
+export default Contact;

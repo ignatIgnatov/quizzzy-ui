@@ -6,26 +6,26 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import { AuthContext } from "./contexts/AuthContext";
 
 import Navbar from "./components/Navbar";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import Login from "./components/Auth/Login";
+import Register from "./components/Auth/Register";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
-import Rooms from "./components/Rooms";
-import Logout from "./components/Logout";
-import Contact from "./components/Contact";
+import Rooms from "./components/GamePlay/Rooms";
+import Logout from "./components/Auth/Logout";
+import SendQuestionPage from "./components/SendQuestion/SendQuestionPage";
 import TermsAndConditions from "./components/TermsAndConditions";
 import About from "./components/About";
-import RecievedQuestionsTable from "./components/RecievedQuestionsTable";
-import RegistеredUsersTable from "./components/RegistеredUsersTable";
-import EditUserQuestionPage from "./components/EditUserQuestionPage";
-import GamePlayUserQuestions from "./components/GamePlayUserQuestions";
-import GamePlayUQStart from "./components/GamePlayUQStart";
+import RecievedQuestionsTable from "./components/QuestionsTable/RecievedQuestionsTable";
+import RegistеredUsersTable from "./components/UsersTable/RegistеredUsersTable";
+import EditUserQuestionPage from "./components/QuestionsTable/EditUserQuestionPage";
+import GamePlayUserQuestions from "./components/GamePlay/GamePlayUserQuestions";
+import GamePlayUQStart from "./components/GamePlay/GamePlayUQStart";
 import ErrorPage from "./components/ErrorPage";
 import Ranglist from "./components/Ranglist/Ranglist";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Instructions from "./components/ForgotPassword/Instructions";
 import SystemMessage from "./components/SystemMessage/SystemMessage";
-import UnapprovedQuestionsTable from "./components/UnapprovedQuestionsTable";
+import UnapprovedQuestionsTable from "./components/QuestionsTable/UnapprovedQuestionsTable";
 
 const initialAuthState = {
   id: "",
@@ -76,7 +76,7 @@ function App() {
             {user.token ? (
               <>
                 <Route path="/rooms" element={<Rooms />} />
-                <Route path="/messages" element={<Contact />} />
+                <Route path="/send-question" element={<SendQuestionPage />} />
                 <Route path="/game/ranglist" element={<Ranglist />} />
                 <Route path="/game/room/user-questions-room" element={<GamePlayUserQuestions />} />
                 <Route path="/game/room/u-q-start" element={<GamePlayUQStart />} />

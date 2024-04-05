@@ -1,23 +1,24 @@
-import * as messageService from "../services/messageService";
+import * as questionService from "../../services/questionService";
 
 import { useNavigate } from "react-router-dom";
 
 import { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
-const QuestionRow = ({ questionRow }) => {
+const MessageCard = ({ messageRow }) => {
+
     const navigate = useNavigate();
 
     const { user } = useContext(AuthContext);
 
-    const id = questionRow.id;
-    const author = questionRow.author.email;
-    const question = questionRow.question;
-    const approved = questionRow.approved;
+    const id = messageRow.id;
+    const author = messageRow.author.email;
+    const question = messageRow.question;
+    const approved = messageRow.approved;
 
 
     const deleteHandler = () => {
-        messageService.deleteQuestion(id, user.token)
+        questionService.deleteQuestion(id, user.token)
             .then(() => {
                 alert(`Question with id ${id} deleted successfully!`)
                 window.location.reload();
@@ -53,7 +54,7 @@ const QuestionRow = ({ questionRow }) => {
                 /></td>
             </tr>
         </>
-    )
-}
+    );
+};
 
-export default QuestionRow;
+export default MessageCard;

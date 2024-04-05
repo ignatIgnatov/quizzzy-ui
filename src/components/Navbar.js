@@ -92,7 +92,7 @@ const Navbar = () => {
                                 <Link to="/about">About</Link>
                             </li>
                             <li>
-                                {user.token ? <Link to="/messages">Send Your Question</Link> : ""}
+                                {user.token ? <Link to="/send-question">Send Your Question</Link> : ""}
                             </li>
 
                             {user.token ? (

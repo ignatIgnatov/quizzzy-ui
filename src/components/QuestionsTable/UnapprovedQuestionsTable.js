@@ -1,13 +1,14 @@
-import * as messageService from "../services/messageService";
-import MessageRow from "./MessageRow";
+import QuestionRow from "./QuestionRow";
+
+import * as questionService from "../../services/questionService";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
 
-const RecievedQuestionsTable = () => {
+const UnapprovedQuestionsTable = () => {
 
     const { user } = useContext(AuthContext);
 
@@ -18,7 +19,7 @@ const RecievedQuestionsTable = () => {
     const [message, setMessage] = useState([]);
 
     useEffect(() => {
-        messageService.getAllUserQuestions(token)
+        questionService.getAllUnapprovesQuestions(token)
             .then((data) => {
                 setMessage(Object.values(data));
             })
@@ -32,12 +33,12 @@ const RecievedQuestionsTable = () => {
 
                 <ol className="breadcrumb">
                     <li>Admin</li>
-                    <li className="active">User Questions Table</li>
+                    <li className="active">Unapproved Questions Table</li>
                 </ol>
 
                 <div className="jumbotron top-space">
                     <div className="container">
-                        <h3 className="text-center thin">All user questions</h3>
+                        <h3 className="text-center thin">All unapproved questions</h3>
 
                         <table className="table table-striped">
                             <thead>
@@ -52,7 +53,7 @@ const RecievedQuestionsTable = () => {
                             </thead>
                             <tbody>
                                 {message.map((x) => (
-                                    <MessageRow key={x.id} messageRow={x} />
+                                    <QuestionRow key={x.id} questionRow={x} />
                                 ))}
                             </tbody>
                         </table>
@@ -64,4 +65,4 @@ const RecievedQuestionsTable = () => {
     )
 }
 
-export default RecievedQuestionsTable;
+export default UnapprovedQuestionsTable;

@@ -1,11 +1,11 @@
 
 import { useContext, useState } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-import * as userService from "../services/userService";
+import * as userService from "../../services/userService";
 
-import PopupWithoutAnimation from "./Popup/PopupWithoutAnimation";
+import PopupWithoutAnimation from "../Popup/PopupWithoutAnimation";
 
 const UserCard = ({ userRow }) => {
     const { user } = useContext(AuthContext);

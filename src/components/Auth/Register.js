@@ -2,14 +2,14 @@ import { useState } from "react";
 
 import { Link } from "react-router-dom";
 
-import * as authService from "../services/authService";
+import * as authService from "../../services/authService";
 
 import { useNavigate } from "react-router-dom";
 
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
 
-import PopupWithoutAnimation from "./Popup/PopupWithoutAnimation";
+import PopupWithoutAnimation from "../Popup/PopupWithoutAnimation";
 
 const Register = () => {
 

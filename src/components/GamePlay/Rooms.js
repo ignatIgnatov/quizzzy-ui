@@ -4,9 +4,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
-import PopupWithoutAnimation from './Popup/PopupWithoutAnimation';
+import PopupWithoutAnimation from '../Popup/PopupWithoutAnimation';
 
 const Rooms = () => {
     const { user } = useContext(AuthContext);
@@ -119,7 +119,7 @@ const Rooms = () => {
                     </h4>
                     <hr></hr>
                     <p className="text-center">
-                        <Link to="/messages" className="btn btn-primary btn-large">
+                        <Link to="/send-question" className="btn btn-primary btn-large">
                             Submit your question »
                         </Link>
                     </p>
