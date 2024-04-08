@@ -57,6 +57,7 @@ function App() {
   const logout = () => {
     setUser(initialAuthState);
   };
+
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
       <div>
@@ -74,20 +75,32 @@ function App() {
             <Route path="/termsAndConditions" element={<TermsAndConditions />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/forgot-pws-instr" element={<Instructions />} />
-            {user.token ? (
-              <>
-                <Route path="/rooms" element={<Rooms />} />
-                <Route path="/send-question" element={<SendQuestionPage />} />
-                <Route path="/game/ranglist" element={<Ranglist />} />
-                <Route path="/game/room/user-questions-room" element={<GamePlayUserQuestions />} />
-                <Route path="/game/room/u-q-start" element={<GamePlayUQStart />} />
-                <Route path="/admin/user-questions-table" element={<RecievedQuestionsTable />} />
-                <Route path="/admin/registered-users-table" element={<RegistеredUsersTable />} />
-                <Route path="/admin/edit-user-question" element={<EditUserQuestionPage />} />
-                <Route path="/admin/general-msg" element={<SystemMessage />} />
-                <Route path="/admin/unapproved-questions-table" element={<UnapprovedQuestionsTable />} />
-              </>
-            ) : (
+            {user.token ? user.roles[0] === "ROLE_ADMIN"
+              ?
+              (
+                <>
+                  <Route path="/rooms" element={<Rooms />} />
+                  <Route path="/send-question" element={<SendQuestionPage />} />
+                  <Route path="/game/ranglist" element={<Ranglist />} />
+                  <Route path="/game/room/user-questions-room" element={<GamePlayUserQuestions />} />
+                  <Route path="/game/room/u-q-start" element={<GamePlayUQStart />} />
+                  <Route path="/admin/user-questions-table" element={<RecievedQuestionsTable />} />
+                  <Route path="/admin/registered-users-table" element={<RegistеredUsersTable />} />
+                  <Route path="/admin/edit-user-question" element={<EditUserQuestionPage />} />
+                  <Route path="/admin/general-msg" element={<SystemMessage />} />
+                  <Route path="/admin/unapproved-questions-table" element={<UnapprovedQuestionsTable />} />
+                </>
+              )
+              :
+              (
+                <>
+                  <Route path="/rooms" element={<Rooms />} />
+                  <Route path="/send-question" element={<SendQuestionPage />} />
+                  <Route path="/game/ranglist" element={<Ranglist />} />
+                  <Route path="/game/room/user-questions-room" element={<GamePlayUserQuestions />} />
+                  <Route path="/game/room/u-q-start" element={<GamePlayUQStart />} />
+                </>
+              ) : (
               <Route path="*" element={<Navigate to="/error" />} />
             )}
             <Route path="/error" element={<ErrorPage />} />
